@@ -27,16 +27,5 @@ pipeline {
                 bat "mvn clean package -DskipTests=true"
             }
         }
-        stage('Docker Build & Push') {
-            steps {
-                script{
-                    withDockerRegistry(credentialsId: '19b0657e-e142-41e7-930e-84d2d2bdd1ae') {
-                        bat "docker build -t springboot-jenkins-pipeline -f Dockerfile ."
-                        bat "docker tag  springboot-jenkins-pipeline krishmaddali/springboot-jenkins-pipeline:latest"
-                        bat "docker push krishmaddali/springboot-jenkins-pipeline:latest"
-                    }
-                }
-            }
-        }
     }
 }
